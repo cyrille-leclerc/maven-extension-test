@@ -6,6 +6,7 @@ import org.apache.maven.plugin.MojoExecution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -13,6 +14,14 @@ import javax.inject.Singleton;
 @Singleton
 public class TestJsr330EventSpy extends AbstractEventSpy {
     private final Logger logger = LoggerFactory.getLogger(TestJsr330EventSpy.class);
+
+    private final TestComponent testComponent;
+
+    @Inject
+    public TestJsr330EventSpy(TestComponent testComponent) {
+        this.testComponent = testComponent;
+        logger.info("TestJsr330EventSpy initialized with component: " + this.testComponent);
+    }
 
     @Override
     public void init(Context context) throws Exception {

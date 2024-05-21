@@ -5,6 +5,7 @@ import org.apache.maven.execution.ExecutionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -12,6 +13,14 @@ import javax.inject.Singleton;
 @Singleton
 public class TestJsr330ExecutionListener extends AbstractExecutionListener {
     private final Logger logger = LoggerFactory.getLogger(TestJsr330ExecutionListener.class);
+
+    private final TestComponent testComponent;
+
+    @Inject
+    public TestJsr330ExecutionListener(TestComponent testComponent) {
+        this.testComponent = testComponent;
+        logger.info("TestJsr330ExecutionListener initialized with component: " + this.testComponent);
+    }
 
     @Override
     public void sessionStarted(ExecutionEvent event) {

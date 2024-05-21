@@ -6,6 +6,7 @@ import org.apache.maven.execution.MavenSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -13,6 +14,14 @@ import javax.inject.Singleton;
 @Singleton
 public class TestJsr330MavenLifecycleParticipant extends AbstractMavenLifecycleParticipant {
     private final Logger logger = LoggerFactory.getLogger(TestJsr330MavenLifecycleParticipant.class.getName());
+
+    private final TestComponent testComponent;
+
+    @Inject
+    public TestJsr330MavenLifecycleParticipant(TestComponent testComponent) {
+        this.testComponent = testComponent;
+        logger.info("TestJsr330MavenLifecycleParticipant initialized with component: " + this.testComponent);
+    }
 
     @Override
     public void afterProjectsRead(MavenSession session) throws MavenExecutionException {

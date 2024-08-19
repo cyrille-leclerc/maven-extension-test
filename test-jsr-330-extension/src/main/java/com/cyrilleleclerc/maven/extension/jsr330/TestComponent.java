@@ -18,5 +18,6 @@ public class TestComponent {
     @PreDestroy
     public void preDestroy() {
         logger.info("TestComponent.preDestroy");
+        new SomeClass().doSomething();
     }
 }
